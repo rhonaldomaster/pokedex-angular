@@ -1,0 +1,78 @@
+<div class="poke-details">
+  <div class="poke-details__card">
+    <img src="//pokeapi.co/media/sprites/pokemon/{{pokemon.id}}.png" class="poke-details__image">
+    <div class="poke-details__types">
+      <div ng-repeat="type in pokemon.types" class="type-icon type-{{type.name}}">{{type.name}}</div>
+    </div>
+  </div>
+  <div class="poke-details__data">
+    <div class="poke-details__header">
+      <h1 class="poke-details__title">{{pokemon.num}} {{pokemon.name}}</h1>
+    </div>
+    <div class="poke-details__stats">
+      <h2 class="poke-details__title">Caracter&iacute;sticas</h2>
+      <table class="stats-table">
+        <tr>
+          <th>Peso</th>
+          <td>{{pokemon.weight}} kg</td>
+          <th>Altura</th>
+          <td>{{pokemon.height}} m</td>
+        </tr>
+      </table>
+      <h2 class="poke-details__title">Stats base</h2>
+      <table class="stats-table">
+        <tr>
+          <th>Ataque</th>
+          <td>{{pokemon.atk}}</td>
+          <th>Defensa</th>
+          <td>{{pokemon.def}}</td>
+        </tr>
+        <tr>
+          <th>Atq especial</th>
+          <td>{{pokemon.spatk}}</td>
+          <th>Def especial</th>
+          <td>{{pokemon.spdef}}</td>
+        </tr>
+        <tr>
+          <th>Velocidad</th>
+          <td>{{pokemon.spd}}</td>
+          <th>Salud</th>
+          <td>{{pokemon.hp}}</td>
+        </tr>
+      </table>
+      <div class="poke-details__abilities">
+        <h2 class="poke-details__title">Habilidades</h2>
+        <ul class="list--unstyled">
+          <li ng-repeat="ability in pokemon.abilities"><a href="{{ability.url}}" target="_blank" rel="nofollow">{{ability.name}}</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="poke-details__moves">
+      <h2 class="poke-details__title">Movimientos</h2>
+      <ul class="poke-moves list--unstyled">
+        <li ng-repeat="move as pokemon.moves">
+          <h3 class="poke-details__title poke-moves__move-title">{{move.name}}</h3>
+          <table class="moves-table">
+            <thead>
+              <tr>
+                <th>Nivel</th>
+                <th>M&eacute;todo</th>
+                <th>Versi&oacute;n</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="detail as move.version_group_details">
+                <td>{{detail.level_learned_at}}</td>
+                <td>{{detail.move_learn_method.name}}</td>
+                <td>{{detail.version_group.name}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="poke-details__nav">
+    <a href="#" class="js-back">Regresar a listado</a>
+  </div>
+</div>
