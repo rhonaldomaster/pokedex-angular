@@ -1,10 +1,17 @@
 <div class="pokelist">
   <ul class='list--unstyled'>
-    <li class="pokelist__item" ng-repeat="item in pokemons">
-      <pokemon-resume pokemon="item"></pokemon-resume>
+    <li class="pokelist__item" ng-repeat="pokemon in pokemons">
+      <a href='#' class='pokelist__link js-view-detail' data-poke-index="{{offset}}">
+        <div class="item-number">{{ $index + offset }}</div>
+        <div class="item-name">
+          <img src="//pokeapi.co/media/sprites/pokemon/{{ $index + offset }}.png" alt="{{pokemon.name}}" class="mini-sprite">
+          {{pokemon.name}}
+        </div>
+      </a>
     </li>
   </ul>
 </div>
 <div class="pokelist-navigation">
-  {{{buttons}}}
+  <button type="button" ng-if="offset > pageItems" class="button button--primary js-prev">Anterior</button>
+  <button type="button" ng-if="offset <= pageItems" class="button button--primary js-next">Siguiente</button>
 </div>

@@ -10,8 +10,11 @@
   </head>
   <body>
     <pokedex-header></pokedex-header>
-    <section class="main-container js-main-div" ng-controller="MainController"></section>
+    <section class="main-container js-main-div" ng-controller="MainController">
+      <pokemon-list></pokemon-list>
+    </section>
     <script src="js/angular.min.js"></script>
     <script src="app/app.js"></script>
+    <script src="app/directives.js"></script>
   </body>
 </html>

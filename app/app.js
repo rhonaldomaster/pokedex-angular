@@ -1,32 +1,16 @@
 (function () {
-  var componentsFolder = 'app/components/';
-  angular.module('pokedex',[]);
+  var apiUrl = '//pokeapi.co/api/v2/', offset = 0, pageItems = 100,
+  loadingImg = "<img src='img/loading.gif' class='loading-img'>";
+  var mainDiv = document.querySelector('.js-main-div');
+  angular.module('pokedex',['pokedex-directives']);
 
-  angular.module('pokedex').directive('pokedexHeader',function () {
-    return {
-      restrict: 'E',
-      templateUrl: componentsFolder+'header/pokedex-header.html'
-    };
-  });
-
-  angular.module('pokedex').directive('pokemonList',function () {
-    return {
-      restrict: 'E',
-      templateUrl: componentsFolder+'templates/pokemon-list.html'
-    };
-  });
-
-  angular.module('pokedex').directive('pokemonResume',function () {
-    return {
-      restrict: 'E',
-      templateUrl: componentsFolder+'templates/pokemon-resume.html'
-    };
-  });
-
-  angular.module('pokedex').controller('MainController', function () {
-    var apiUrl = '//pokeapi.co/api/v2/', offset = 0, pageItems = 100,
-    loadingImg = "<img src='img/loading.gif' class='loading-img'>";
-    var $mainDiv;
-  });
+  angular.module('pokedex').controller('MainController', ['$http','$scope', function ($http,$scope) {
+    var ajx = $http.get(apiUrl+'pokemon/',{limit: pageItems, offset: offset});
+    ajx.success(function (data) {
+      $scope.pokemons = data.results;
+      $scope.offset = offset + 1;
+      $scope.pageItems = pageItems;
+    });
+  }]);
 
 })();
